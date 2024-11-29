@@ -12,8 +12,8 @@ title                    : "Aryan Naveen"
 title_separator          : "-"
 name                     : &name "Aryan Naveen"
 description              : &description "personal description"
-url                      : https://aryan-naveen.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
-repository               : "Aryan-Naveen/aryan-naveen.github.io"
+url                      : https://Aryan-Naveen.github.io  # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io"
+repository               : "Aryan-Naveen/Aryan-Naveen.github.io "
 
 # Site Author - The following control what appear as part of the author content on the side bar.
 #               If a field is blank the icon and link will not appear, otherwise it will be shown.
