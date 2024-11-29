@@ -316,6 +316,56 @@ body:hover .visually-hidden button {
   .fa-xing-square {
     color: $xing-color;
   }
+  /* The Modal (background) */
+  .gallery-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  }
+
+  /* Modal Content (Image) */
+  .gallery-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .modal-gallery-image {
+    max-width: 90%;
+    max-height: 90%;
+    margin: 10px;
+    transition: transform 0.3s ease;
+  }
+
+  .modal-gallery-image:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+  }
+
+  /* Close Button */
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .close-btn:hover {
+    color: #ddd;
+  }
+
 }
 
 
