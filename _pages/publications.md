@@ -6,7 +6,7 @@ author_profile: true
 ---
 
 This page shows selected journal articles and conference papers.
-For a complete list of my publications, please visit my [Google Scholar profile](https://scholar.google.com/citations?user=r-v0cusAAAAJ&hl=en&oi=ao) or see my [CV](/files/YulunTian_CV.pdf).
+For a complete list of my publications, please visit my [Google Scholar profile](https://scholar.google.com/citations?hl=en&user=CQYCN10AAAAJ) or see my [CV](/files/Aryan_CV.pdf).
 
 {% include base_path %}
 
