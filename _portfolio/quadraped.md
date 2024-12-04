@@ -1,6 +1,6 @@
 ---
 title: "Building Olympian Quadrupeds: Reinforcement Learning for High-Performance Jumping"
-excerpt: "Final project for RL class, attempting to train a policy for high performance jumping for quadrapeds in IsaacLab."
+excerpt: "As a final project for our reinforcement learning class, this work explores enabling quadrupeds to perform athletic maneuvers like optimal leaps. Using advanced reward shaping and curriculum learning, we aim to enhance performance, generalization, and robustness across terrains, extending to maneuvers like long jumps."
 year: "2024"
 include_on_website: true
 image: "jumping_quadrapeds.gif"
