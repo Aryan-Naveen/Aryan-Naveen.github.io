@@ -251,7 +251,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
+      comment: true
   # _publications
   - scope:
       path: ""
