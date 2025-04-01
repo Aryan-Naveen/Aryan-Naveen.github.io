@@ -11,8 +11,6 @@ include_on_website: true
 excerpt: ""
 ---
 
-# Week 7: Minimum Viable Product - Clothes Folding Robot
-
 ## Assignment Description
 For this week's assignment, we were tasked with creating a Minimum Viable Product (MVP) that tackles the most challenging or intimidating aspect of our final project. In my case, this meant addressing the core functionality of my clothes folding robot project.
 
