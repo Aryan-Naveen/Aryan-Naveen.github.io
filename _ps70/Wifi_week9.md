@@ -6,7 +6,7 @@ links_to_website: "/ps70/week9"
 links_to_video: ""
 links_to_code: ""
 image: "wifi_demo.gif"
-year: "2024"
+year: "2025"
 include_on_website: true
 excerpt: ""
 ---
