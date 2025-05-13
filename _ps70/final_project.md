@@ -20,6 +20,32 @@ My final project involved constructing a clothes folding robot using a double li
 - **Construction:** The robot utilizes a double linkage system with three actuated flaps to fold clothes.
 - **Functionality:** The robot can fold different types of clothing, including t-shirts, dress shirts, shorts, and pants.
 
+## Specific Features
+
+### Double Linkage System
+
+The double linkage system was a critical component of the robot's design. I extensively prototyped different link lengths and positions to optimize performance. The system was designed to allow easy modifications without needing to completely remake parts.
+
+A challenge I encountered was the forces exerted on the links, which caused several to break. This was an oversight in the early design phase.
+
+![Double Linkage](images/publications/IMG_1087.jpg)
+
+Below is a GIF showing the linkage in action:
+
+![Linkage in Action](images/publications/IMG_1092.gif)
+
+### Wiring and Circuitry
+
+Ensuring robust and clean wiring was imperative for portability. While wiring servos and buttons is relatively straightforward, I created a compact board for the wiring.
+
+![Wiring 1](images/publications/IMG_1084.jpg)
+![Wiring 2](images/publications/IMG_1085.jpg)
+![Wiring 3](images/publications/IMG_1086.jpg)
+
+## Overall Assembly
+
+This section will be filled in later.
+
 ## Video Demonstrations
 
 Below is a gallery of video demonstrations showcasing the robot folding various types of clothes:
