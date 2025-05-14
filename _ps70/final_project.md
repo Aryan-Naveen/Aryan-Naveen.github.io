@@ -11,6 +11,42 @@ include_on_website: true
 excerpt: "A clothes folding robot using a double linkage system."
 ---
 
+## Video Demonstrations
+
+Below is a gallery of video demonstrations showcasing the robot folding various types of clothes:
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <div style="flex: 1; min-width: 300px;">
+    <video width="100%" controls>
+      <source src="/images/publications/IMG_1099.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p>T-shirt Folding</p>
+  </div>
+  <div style="flex: 1; min-width: 300px;">
+    <video width="100%" controls>
+      <source src="/images/publications/IMG_1100.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p>Dress Shirt Folding</p>
+  </div>
+  <div style="flex: 1; min-width: 300px;">
+    <video width="100%" controls>
+      <source src="/images/publications/IMG_1101.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p>Shorts Folding</p>
+  </div>
+  <div style="flex: 1; min-width: 300px;">
+    <video width="100%" controls>
+      <source src="/images/publications/IMG_1102.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <p>Pants Folding</p>
+  </div>
+</div>
+
+
 ## Project Overview
 
 My final project involved constructing a clothes folding robot using a double linkage system. The robot is equipped with three actuated flaps designed to fold various types of clothing efficiently. 
@@ -58,43 +94,6 @@ In particular, I want to highlight the connecting mechanisms I leveraged to asse
 - **3D printed brackets:** Throughout the assembly I additionally designed custom brackets leveraging the triangle pattern of the frame to allow for easy mounting.
 ![Bracket](/images/publications/image(3).png)
 ![Bracket](/images/publications/image(4).png)
-
-
-
-## Video Demonstrations
-
-Below is a gallery of video demonstrations showcasing the robot folding various types of clothes:
-
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <div style="flex: 1; min-width: 300px;">
-    <video width="100%" controls>
-      <source src="/images/publications/IMG_1099.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p>T-shirt Folding</p>
-  </div>
-  <div style="flex: 1; min-width: 300px;">
-    <video width="100%" controls>
-      <source src="/images/publications/IMG_1100.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p>Dress Shirt Folding</p>
-  </div>
-  <div style="flex: 1; min-width: 300px;">
-    <video width="100%" controls>
-      <source src="/images/publications/IMG_1101.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p>Shorts Folding</p>
-  </div>
-  <div style="flex: 1; min-width: 300px;">
-    <video width="100%" controls>
-      <source src="/images/publications/IMG_1102.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <p>Pants Folding</p>
-  </div>
-</div>
 
 ## Conclusion
 
