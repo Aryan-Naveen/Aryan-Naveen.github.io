@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Language as a Sensor: Calibrated Spatial Belief Estimation in 3D Scenes from Natural Language</title>
+  <meta name="description" content="A learned Language Sensor Model turns natural-language utterances into calibrated Gaussian-mixture spatial distributions, and VL-Map fuses them with onboard perception in a unified Bayesian belief map. CoRL 2026.">
+  <meta property="og:title" content="Language as a Sensor: Calibrated Spatial Belief Estimation in 3D Scenes from Natural Language">
+  <meta property="og:description" content="Treating language as a calibrated, probabilistic sensor that fuses with vision for robot spatial belief estimation. CoRL 2026.">
+  <meta property="og:image" content="https://aryan-naveen.github.io/language-as-a-sensor/assets/teaser.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // ---- Links to fill in once available (leave "" to show "Coming soon") ----
+    const LINKS = {
+      paper:   "",  // e.g. "https://openreview.net/pdf?id=..."
+      arxiv:   "",  // e.g. "https://arxiv.org/abs/2610.xxxxx"
+      youtube: "",  // YouTube video ID only, e.g. "dQw4w9WgXcQ"
+    };
+  </script>
+</head>
+<body>
+
+<header class="hero">
+  <p class="venue">CoRL 2026 · Conference on Robot Learning</p>
+  <h1><span class="accent">Language as a Sensor</span>: Calibrated Spatial Belief Estimation in 3D Scenes from Natural Language</h1>
+
+  <p class="authors">
+    <span><a href="https://aryan-naveen.github.io/">Aryan Naveen</a><sup>1,2,*</sup></span>
+    <span><a href="https://jasonxyliu.github.io/">Jason Xinyu Liu</a><sup>2</sup></span>
+    <span><a href="https://lucacarlone.mit.edu/">Luca Carlone</a><sup>1,†</sup></span>
+    <span><a href="https://andreea7b.github.io/">Andreea Bobu</a><sup>2,†</sup></span>
+  </p>
+  <p class="affiliation"><sup>1</sup>MIT Laboratory for Information &amp; Decision Systems &nbsp;&nbsp; <sup>2</sup>MIT Computer Science &amp; Artificial Intelligence Laboratory</p>
+  <p class="affiliation note"><sup>*</sup>Correspondence: <a href="mailto:aryannav@mit.edu">aryannav@mit.edu</a> &nbsp;&nbsp; <sup>†</sup>Equal advising</p>
+
+  <nav class="links">
+    <span class="btn disabled" id="btn-paper" title="Coming soon">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM8 13h8v1.5H8V13zm0 3.5h8V18H8v-1.5z"/></svg>Paper</span>
+    <span class="btn disabled" id="btn-arxiv" title="Coming soon">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z"/></svg>arXiv</span>
+    <a class="btn" href="https://github.com/MIT-SPARK/Language-As-A-Sensor">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>Code</a>
+    <a class="btn" href="#video">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Video</a>
+  </nav>
+</header>
+
+<main>
+  <figure class="wide">
+    <img src="assets/teaser.jpg" alt="A robot receives the utterance 'I left my backpack on the table'. The Language Sensor Model turns it into a multimodal spatial distribution over the tables in the scene graph, which VL-Map fuses with streaming visual observations until the belief concentrates on the true backpack location.">
+    <figcaption><strong>Language as a complementary sensing modality.</strong> A robot navigating a scene receives the utterance <em>“I left my backpack on the table.”</em> The Language Sensor Model (<strong>LSM</strong>) maps this utterance and the prior scene graph into a calibrated spatial distribution, which <strong>VL-Map</strong> fuses with streaming visual observations. Treating the utterance as a stochastic spatial observation, VL-Map first places multimodal probability mass over the ambiguous table regions, then concentrates it on the true location as it fuses visual observations.</figcaption>
+  </figure>
+
+  <section id="video">
+    <h2>Video</h2>
+    <div class="video-embed" id="yt">
+      <img src="assets/video/supp_poster.jpg" alt="Frame from the supplementary video comparing VL-Map with LSM against VL-Map with an LLM language sensor.">
+      <div class="soon">Video coming soon</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Abstract</h2>
+    <p class="prose">Robots deployed in human-centric environments routinely receive natural-language descriptions of spatial information (“I left my backpack on the table”) that reference parts of the world beyond their perceptual field of view. Traditional metric-semantic mapping ignores this signal, while off-the-shelf multimodal models remain limited in 3D spatial reasoning and are not directly amenable to fusion with other sensor modalities. To convert language observations into a calibrated spatial distribution, we train a Language Sensor Model (LSM) that maps each utterance and its scene-graph context to a multimodal distribution, with mixture weights encoding referential ambiguity (e.g., <em>which table</em>) and component covariances encoding spatial uncertainty (e.g., <em>where on the table the target lies</em>). We then introduce VL-Map (<em>Vision-Language Metric-Semantic Mapping</em>), a probabilistic framework that treats these language predictions as stochastic observations and fuses them with onboard perception within a unified belief map. On the VLA-3D benchmark as well as on a real-world mobile robot, LSM is the only language predictor whose covariance estimates remain within the calibrated regime; fused into VL-Map, it leads to more accurate predictions of the target object location (~70% more probability mass on the true target compared to the strongest foundation-model baseline).</p>
+  </section>
+
+  <section>
+    <h2>Contributions</h2>
+    <div class="cards">
+      <article>
+        <span class="num">01</span>
+        <h3>Language Sensor Model</h3>
+        <p>A transformer-based LSM that maps unstructured language into calibrated Gaussian-mixture spatial distributions, representing both referential and spatial ambiguity.</p>
+      </article>
+      <article>
+        <span class="num">02</span>
+        <h3>VL-Map framework</h3>
+        <p>A Bayesian formulation that treats natural language as a probabilistic sensing modality, updating a robot’s spatial belief over latent scene structure using both language and onboard perception.</p>
+      </article>
+      <article>
+        <span class="num">03</span>
+        <h3>Empirical validation</h3>
+        <p>LSM is the only evaluated language predictor that retains calibration. Fused into VL-Map, it assigns ~70% more posterior probability mass to the true target than the strongest foundation-model baseline.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Method</h2>
+
+    <h3 class="sub">Language Sensor Model</h3>
+    <p class="prose">Consider a robot that hears <em>“my backpack is on the table”</em> in a room with two tables. Turning that sentence into a calibrated spatial distribution means representing two intertwined sources of uncertainty: <strong>referential ambiguity</strong> (which table the speaker means) and, conditioned on a table, <strong>spatial ambiguity</strong> (where on that table the backpack lies). LSM factors the language observation as a mixture over anchor hypotheses. A large language model enumerates and weights candidate referents from the scene graph, and a geometry-aware <em>Language Spatial Transformer</em> predicts a Gaussian over the target’s 3D position for each hypothesis.</p>
+    <figure class="wide">
+      <img src="assets/pipeline.jpg" alt="LSM pipeline: a hypothesis proposer enumerates anchor candidates from the prior scene graph and utterance; for each hypothesis the Language Spatial Transformer fuses object tokens with a BERT utterance encoding and decodes a Gaussian. Bottom: multimodal outputs for under, on, near, and between.">
+      <figcaption><strong>LSM is a learned Gaussian mixture over the target’s 3D position.</strong> <em>Top:</em> the prior scene graph and a language observation go to a hypothesis proposer (an LLM), which enumerates anchor candidates and assigns each a confidence. For every hypothesis, the Language Spatial Transformer fuses object tokens (Scene Transformer) with the utterance encoding (BERT) and decodes a Gaussian; together these form the language-sensor GMM. <em>Bottom:</em> multimodal LSM outputs for four spatial relations on the same scene (<em>under</em>, <em>on</em>, <em>near</em>, <em>between</em>), with anchors colored by the mode they induce.</figcaption>
+    </figure>
+
+    <h3 class="sub">Qualitative LSM outputs</h3>
+    <div class="tab-stage">
+      <div class="tabs" role="tablist" id="orbit-tabs">
+        <button role="tab" aria-selected="false" data-src="assets/video/orbit_anchors">Anchor hypotheses</button>
+        <button role="tab" aria-selected="false" data-src="assets/video/orbit_mono">Language mixture</button>
+        <button role="tab" aria-selected="true" data-src="assets/video/orbit_full">Modes colored by anchor</button>
+      </div>
+      <video id="orbit" class="auto" src="assets/video/orbit_full.mp4" poster="assets/video/orbit_full.jpg" muted loop playsinline preload="none"></video>
+    </div>
+    <p class="cap">Orbit of an LSM prediction in a multi-room scene. The anchors proposed for an utterance (left tab) each induce a Gaussian component; together these form a multimodal distribution that keeps probability mass on every plausible referent rather than committing to one.</p>
+
+    <div class="vgrid five" style="margin-top: 24px;">
+      <figure><video class="auto" src="assets/video/office_1.mp4" poster="assets/video/office_1.jpg" muted loop playsinline preload="none"></video><figcaption>Office 1</figcaption></figure>
+      <figure><video class="auto" src="assets/video/office_2.mp4" poster="assets/video/office_2.jpg" muted loop playsinline preload="none"></video><figcaption>Office 2</figcaption></figure>
+      <figure><video class="auto" src="assets/video/livingroom_3.mp4" poster="assets/video/livingroom_3.jpg" muted loop playsinline preload="none"></video><figcaption>Living room 1</figcaption></figure>
+      <figure><video class="auto" src="assets/video/livingroom_4.mp4" poster="assets/video/livingroom_4.jpg" muted loop playsinline preload="none"></video><figcaption>Living room 2</figcaption></figure>
+      <figure><video class="auto" src="assets/video/arabic_room.mp4" poster="assets/video/arabic_room.jpg" muted loop playsinline preload="none"></video><figcaption>Lounge</figcaption></figure>
+    </div>
+    <p class="cap">LSM scales to different scene layouts and object arrangements: mixture weights spread across ambiguous referents, while covariances adapt to the extent of each anchor region.</p>
+
+    <h3 class="sub">VL-Map: fusing language with streaming perception</h3>
+    <p class="prose">VL-Map discretizes the workspace into voxels and maintains a recursive posterior over which voxel holds the target. Language utterances and visual observations are conditionally independent given the map, so the belief factors into a <strong>visual observation model</strong> and a <strong>language observation model</strong>: each utterance contributes a spatial likelihood, just as a conventional sensor measurement would. We integrate VL-Map with <a href="https://github.com/MIT-SPARK/Hydra">Hydra</a>, where visual and language log-odds accumulate additively per voxel. The two pipelines run asynchronously: visual updates run at sensor frame rate, and each new utterance triggers a single language update.</p>
+  </section>
+
+  <section>
+    <h2>Results</h2>
+    <div class="stats">
+      <div><strong>~71%</strong><span>more closed-loop posterior mass on the true target than the strongest foundation-model baseline (22.3% vs. 13.0%)</span></div>
+      <div><strong>1.83</strong><span>ANEES on val_seen (3 = perfectly calibrated), vs. 72.0 for Scaffolded-LLM</span></div>
+      <div><strong>+4.34&nbsp;nats</strong><span>mean information gain at the target surface on a Boston Dynamics Spot in real-world scenes</span></div>
+    </div>
+
+    <h3 class="sub">Static spatial grounding</h3>
+    <p class="prose">Given the ground-truth anchor hypothesis, LSM attains the lowest RMSE and NLL on both splits of VLA-3D and is the only method whose covariances stay near the calibrated target. Post-hoc rescaling narrows the calibration gap for Scaffolded-LLM, but it transfers poorly to held-out scenes and cannot correct the means.</p>
+    <div class="table-wrap">
+      <table>
+        <caption>Grounding accuracy and calibration on unambiguous utterances using the ground-truth anchor proposer (mean ± std). ANEES → 3 indicates calibration; values above 3 are overconfident. <b>Bold</b>: best.</caption>
+        <thead>
+          <tr><th rowspan="2" class="method">Method</th><th colspan="3" class="grp">val_seen</th><th colspan="3" class="grp">val_unseen</th></tr>
+          <tr><th class="grp">RMSE ↓</th><th>NLL ↓</th><th>ANEES → 3</th><th class="grp">RMSE ↓</th><th>NLL ↓</th><th>ANEES → 3</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Scaffolded-LLM</th><td class="grp">1.78 <span class="pm">± 2.87</span></td><td>35.82 <span class="pm">± 345.06</span></td><td>72.01 <span class="pm">± 690.23</span></td><td class="grp">3.68 <span class="pm">± 5.50</span></td><td>86.04 <span class="pm">± 370.05</span></td><td>171.91 <span class="pm">± 740.27</span></td></tr>
+          <tr class="indent"><th>+ global rescale</th><td class="grp">1.78 <span class="pm">± 2.87</span></td><td>6.17 <span class="pm">± 19.92</span></td><td>4.16 <span class="pm">± 39.88</span></td><td class="grp">3.68 <span class="pm">± 5.50</span></td><td>9.33 <span class="pm">± 21.33</span></td><td>9.93 <span class="pm">± 42.77</span></td></tr>
+          <tr class="indent"><th>+ per-axis rescale</th><td class="grp">1.78 <span class="pm">± 2.87</span></td><td>5.94 <span class="pm">± 16.06</span></td><td>4.18 <span class="pm">± 32.18</span></td><td class="grp">3.68 <span class="pm">± 5.50</span></td><td>8.23 <span class="pm">± 15.92</span></td><td>8.23 <span class="pm">± 31.93</span></td></tr>
+          <tr class="indent"><th>+ in-context</th><td class="grp">1.77 <span class="pm">± 2.77</span></td><td>7.94 <span class="pm">± 38.52</span></td><td>10.90 <span class="pm">± 77.09</span></td><td class="grp">3.45 <span class="pm">± 5.59</span></td><td>23.75 <span class="pm">± 89.07</span></td><td>42.28 <span class="pm">± 178.35</span></td></tr>
+          <tr><th>Scaffolded-VLM</th><td class="grp">2.27 <span class="pm">± 1.69</span></td><td>25.11 <span class="pm">± 49.40</span></td><td>50.08 <span class="pm">± 99.06</span></td><td class="grp">2.79 <span class="pm">± 3.86</span></td><td>39.92 <span class="pm">± 164.04</span></td><td>79.57 <span class="pm">± 328.03</span></td></tr>
+          <tr><th>3D-ViSTA (fine-tuned)</th><td class="grp">1.55 <span class="pm">± 1.64</span></td><td>2.33 <span class="pm">± 2.93</span></td><td>4.69 <span class="pm">± 10.66</span></td><td class="grp">3.66 <span class="pm">± 4.43</span></td><td>4.59 <span class="pm">± 4.05</span></td><td>9.08 <span class="pm">± 22.27</span></td></tr>
+          <tr class="ours"><th>LSM (ours)</th><td class="grp">0.71 <span class="pm">± 0.69</span></td><td>0.94 <span class="pm">± 1.67</span></td><td>1.83 <span class="pm">± 1.99</span></td><td class="grp">1.46 <span class="pm">± 1.68</span></td><td>4.17 <span class="pm">± 8.71</span></td><td>3.42 <span class="pm">± 16.71</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pair" style="margin-top: 28px;">
+      <figure><img src="assets/ambiguity_vs_anees.png" alt="ANEES versus ambiguity level for each method, with the calibrated band from 2 to 4 shaded."><figcaption>(a) ANEES vs. ambiguity (calibration)</figcaption></figure>
+      <figure><img src="assets/ambiguity_vs_rmse.png" alt="RMSE versus ambiguity level for each method."><figcaption>(b) RMSE vs. ambiguity (accuracy)</figcaption></figure>
+    </div>
+    <p class="cap"><strong>Calibration matters more as ambiguity grows.</strong> The dashed line and shading mark the ideal calibration band (2–4). LSM achieves the lowest RMSE at every ambiguity level, and its median ANEES never exceeds the band’s upper bound. The baselines’ already-overconfident per-hypothesis covariances compound across mixture components.</p>
+
+    <h3 class="sub">Closed-loop belief estimation</h3>
+    <p class="prose">We plug each language predictor into VL-Map and fuse it with the same prerecorded visual observations, so only the language observation model varies. LSM keeps positive information gain throughout the rollout, while every foundation-model sensor ends <em>below</em> the vision-only baseline: an overconfident Gaussian commits the Bayes update to a confidently wrong region, and the filter cannot recover. Here the robot would have been better off ignoring language entirely.</p>
+    <div class="pair">
+      <figure><img src="assets/information_gain.png" alt="Information gain at the target surface over normalized episode progress for each method."><figcaption>(a) Information gain at the target surface (nats)</figcaption></figure>
+      <figure><img src="assets/target_object_probability.png" alt="Mean target-object probability mass over normalized episode progress for each method."><figcaption>(b) Mean target-object probability mass</figcaption></figure>
+    </div>
+    <p class="cap"><strong>Belief evolution under language–vision fusion.</strong> Only LSM improves on the uninformed prior throughout the rollout; all foundation-model sensors degrade it.</p>
+
+    <div class="table-wrap" style="margin-top: 24px;">
+      <table>
+        <caption>Time-varying belief metrics across the rollout, split by whether vision ever directly observes the target. The <em>never observed</em> regime isolates cases where language is the only route to the target. <b>Bold</b>: best.</caption>
+        <thead>
+          <tr><th class="method">Method</th><th class="grp">Mean IG (nats) ↑</th><th>Mean prob. mass ↑</th><th>Argmax dist. (m) ↓</th><th>Success % ↑</th><th>Miss % ↓</th></tr>
+        </thead>
+        <tbody>
+          <tr class="regime"><th colspan="6">Target observed by vision (n = 44)</th></tr>
+          <tr><th>Vision-only</th><td class="grp">−0.60</td><td>0.006</td><td>5.52</td><td>0.0</td><td>79.5</td></tr>
+          <tr><th>LLM-E2E</th><td class="grp">−6.22</td><td>0.095</td><td>2.35</td><td>22.7</td><td>52.3</td></tr>
+          <tr><th>Scaffolded-LLM</th><td class="grp">−1.85</td><td>0.130</td><td>2.25</td><td>36.4</td><td>38.6</td></tr>
+          <tr><th>Scaffolded-VLM</th><td class="grp">−2.26</td><td>0.046</td><td>2.45</td><td>9.1</td><td>50.0</td></tr>
+          <tr class="ours"><th>LSM (ours)</th><td class="grp">+3.77</td><td>0.223</td><td>1.41</td><td>52.3</td><td>4.5</td></tr>
+          <tr class="regime"><th colspan="6">Target never directly observed (n = 10)</th></tr>
+          <tr><th>Vision-only</th><td class="grp">−5.20</td><td>0.007</td><td>5.47</td><td>0.0</td><td>80.0</td></tr>
+          <tr><th>LLM-E2E</th><td class="grp">−1.15</td><td>0.155</td><td>1.97</td><td>40.0</td><td>40.0</td></tr>
+          <tr><th>Scaffolded-LLM</th><td class="grp">−2.93</td><td>0.079</td><td>3.27</td><td>20.0</td><td>40.0</td></tr>
+          <tr><th>Scaffolded-VLM</th><td class="grp">−4.89</td><td>0.083</td><td>2.36</td><td>10.0</td><td>60.0</td></tr>
+          <tr class="ours"><th>LSM (ours)</th><td class="grp">+1.65</td><td>0.293</td><td>1.75</td><td>70.0</td><td>30.0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Simulation rollout</h3>
+    <p class="utterance">“There is a cabinet that is over the counter.”</p>
+    <div class="vgrid two" data-sync>
+      <figure><video src="assets/video/sim_lsm.mp4" poster="assets/video/sim_lsm.jpg" muted loop playsinline preload="none"></video><figcaption><b>VL-Map (LSM)</b> &nbsp;<span class="label good">Calibrated</span><br>Calibrated language uncertainty leads to successful localization.</figcaption></figure>
+      <figure><video src="assets/video/sim_llm.mp4" poster="assets/video/sim_llm.jpg" muted loop playsinline preload="none"></video><figcaption><b>VL-Map (LLM)</b> &nbsp;<span class="label bad">Overconfident</span><br>An overconfident language model inhibits effective fusion.</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <h2>Real-world deployment on Boston Dynamics Spot</h2>
+    <p class="prose">We deploy VL-Map with LSM on a Boston Dynamics Spot across three real-world environments. The prior scene graph comes from an earlier mapping pass rather than ground truth. Fusing the LSM language channel with the streaming Hydra reconstruction attains a mean information gain of <strong>+4.34 nats</strong> at the target surface and concentrates a mean of <strong>8.7%</strong> of the terminal posterior on the target surface. VL-Map places probability mass on the true location well before the robot directly observes it, while the vision-only map has no probability mass there until visual confirmation.</p>
+    <figure style="max-width: 820px; margin-inline: auto;">
+      <video class="auto" src="assets/video/spot_robot.mp4" poster="assets/video/spot_robot.jpg" muted loop playsinline preload="none"></video>
+    </figure>
+    <p class="utterance">“I left my bag on the table.”</p>
+    <div class="vgrid three" data-sync id="spot-grid">
+      <figure><video src="assets/video/spot_vision.mp4" poster="assets/video/spot_vision.jpg" muted loop playsinline preload="none"></video><figcaption><b>Vision-only</b> &nbsp;<span class="label neutral">baseline</span></figcaption></figure>
+      <figure><video src="assets/video/spot_lang.mp4" poster="assets/video/spot_lang.jpg" muted loop playsinline preload="none"></video><figcaption><b>Language-only (LSM)</b></figcaption></figure>
+      <figure><video src="assets/video/spot_fused.mp4" poster="assets/video/spot_fused.jpg" muted loop playsinline preload="none"></video><figcaption><b>VL-Map (LSM + vision)</b> &nbsp;<span class="label good">ours</span></figcaption></figure>
+    </div>
+    <div class="sync"><button type="button" data-restart="spot-grid">↺ Restart together</button></div>
+    <p class="cap">Belief over the target’s location as Spot explores, shown for the three observation models. The three clips play in sync.</p>
+  </section>
+
+  <section>
+    <h2>BibTeX</h2>
+    <div class="bibtex">
+      <button type="button" id="copy">Copy</button>
+<pre id="bib">@inproceedings{naveen2026language,
+  title     = {Language as a Sensor: Calibrated Spatial Belief
+               Estimation in 3D Scenes from Natural Language},
+  author    = {Naveen, Aryan and Liu, Jason Xinyu and
+               Carlone, Luca and Bobu, Andreea},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026}
+}</pre>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>This work was supported by the ARL DCIST program and an MIT Energy Initiative (MITEI) Seed Award.</p>
+  <p>© 2026 Aryan Naveen. Last updated October 2026.</p>
+</footer>
+
+<script>
+  // Fill in links / YouTube embed from LINKS.
+  for (const key of ["paper", "arxiv"]) {
+    if (!LINKS[key]) continue;
+    const span = document.getElementById("btn-" + key);
+    const a = document.createElement("a");
+    a.className = "btn"; a.href = LINKS[key]; a.innerHTML = span.innerHTML;
+    span.replaceWith(a);
+  }
+  if (LINKS.youtube) {
+    document.getElementById("yt").innerHTML =
+      `<iframe src="https://www.youtube-nocookie.com/embed/${LINKS.youtube}?rel=0" title="Language as a Sensor: supplementary video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>`;
+  }
+
+  // Play videos only while on screen. Synced groups play as one unit.
+  const groups = [...document.querySelectorAll("[data-sync]")];
+  const units = [
+    ...[...document.querySelectorAll("video.auto")].map(v => ({ el: v, videos: [v] })),
+    ...groups.map(g => ({ el: g, videos: [...g.querySelectorAll("video")] })),
+  ];
+  const io = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      const unit = units.find(u => u.el === e.target);
+      unit.videos.forEach(v => e.isIntersecting ? v.play().catch(() => {}) : v.pause());
+    }
+  }, { threshold: 0.25 });
+  units.forEach(u => io.observe(u.el));
+
+  // Keep synced videos aligned with the first one.
+  for (const g of groups) {
+    const [lead, ...rest] = g.querySelectorAll("video");
+    lead.addEventListener("timeupdate", () => {
+      for (const v of rest) if (Math.abs(v.currentTime - lead.currentTime) > 0.2) v.currentTime = lead.currentTime;
+    });
+  }
+  document.querySelectorAll("[data-restart]").forEach(btn => btn.addEventListener("click", () => {
+    document.getElementById(btn.dataset.restart).querySelectorAll("video").forEach(v => { v.currentTime = 0; v.play().catch(() => {}); });
+  }));
+
+  // Orbit tabs: swap source, keep playback position.
+  const orbit = document.getElementById("orbit");
+  document.querySelectorAll("#orbit-tabs button").forEach(btn => btn.addEventListener("click", () => {
+    document.querySelectorAll("#orbit-tabs button").forEach(b => b.setAttribute("aria-selected", b === btn));
+    const t = orbit.currentTime;
+    orbit.poster = btn.dataset.src + ".jpg";
+    orbit.src = btn.dataset.src + ".mp4";
+    orbit.addEventListener("loadedmetadata", () => { orbit.currentTime = t; orbit.play().catch(() => {}); }, { once: true });
+  }));
+
+  document.getElementById("copy").addEventListener("click", async (e) => {
+    try {
+      await navigator.clipboard.writeText(document.getElementById("bib").textContent);
+      e.target.textContent = "Copied";
+      setTimeout(() => (e.target.textContent = "Copy"), 1500);
+    } catch (_) {}
+  });
+</script>
+</body>
+</html>
