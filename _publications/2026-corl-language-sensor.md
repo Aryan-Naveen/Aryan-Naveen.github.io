@@ -4,7 +4,7 @@ authors: "Aryan Naveen, Jason Xinyu Liu, Luca Carlone, and Andreea Bobu"
 venue: "Conference on Robot Learning (CoRL)"
 year: "2026"
 status: "conference"
-arxiv: ""
+arxiv: "/language-as-a-sensor/paper.pdf"
 official_link: 
 doi: ""
 volume: "N/A"
