@@ -13,7 +13,7 @@ I am an undergraduate student at Harvard University working with [Prof. Robert J
 
 Selected News
 ------
-* **[10/2026]** Our paper **Language as a Sensor: Calibrated Spatial Belief Estimation in 3D Scenes from Natural Language** was accepted to the **Conference on Robot Learning (CoRL 2026)**! [[Project Page](/language-as-a-sensor/)] [[Paper](/language-as-a-sensor/paper.pdf)] [[arXiv](https://arxiv.org/abs/2606.08666)] [[Code](https://github.com/MIT-SPARK/Language-As-A-Sensor)]
+* **[10/2026]** Our paper **Language as a Sensor: Calibrated Spatial Belief Estimation in 3D Scenes from Natural Language** was accepted to the **Conference on Robot Learning (CoRL 2026)**! [[Project Page](/language-as-a-sensor/)] [[Paper](/language-as-a-sensor/paper.pdf)] [[arXiv](https://arxiv.org/abs/2606.08666)] [[Video](https://youtu.be/XFEcOYNIMZU)] [[Code](https://github.com/MIT-SPARK/Language-As-A-Sensor)]
 * **[07/2024]**  Submitted my state estimation for FWMAV research to the International Journal of Robotics Research.
 * **[05/2024]**  Began my internship at MIT Lincoln Laboratory in the Advanced Technologies Group.
 * **[09/2023]** Began my gap semester volunteering at [Shanti Bhavan]() as the primary computer science teacher for middle school children.
